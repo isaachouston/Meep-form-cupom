@@ -1,10 +1,15 @@
+import 'date-fns';
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container/Container';
+import { ptBR } from 'date-fns/locale'
 import { Formik, Form } from 'formik';
+import DateFnsUtils from '@date-io/date-fns';
 import { Button, FormControl, FormControlLabel, Grid, InputLabel, Radio, Select, TextField } from '@material-ui/core';
 import { ICupom } from '../../interfaces/ICupom';
-
-
+import {
+  MuiPickersUtilsProvider, 
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
 
 const PageCupom: React.FC = () => {
@@ -22,6 +27,7 @@ const PageCupom: React.FC = () => {
         type: 0,
         appliedIn: 0,
         startAt: new Date(),
+        finishAt: null,
     })
 
     const handleSubmit = () => {
@@ -54,6 +60,25 @@ const PageCupom: React.FC = () => {
     }
 
   };
+
+ 
+  const handleDateChangeInitialDate = (date: Date | null ) => {    
+
+    setCupomForm(prevState => ({
+        ...prevState,
+        ...{  startAt: date }
+      }))
+    
+  };
+
+  const handleDateChangeSet = (date: Date | null ) => {
+    setCupomForm(prevState => ({
+        ...prevState,
+        ...{  finishAt: date }
+      }))
+    
+  };
+
 
   return (
   <Container maxWidth="md">
@@ -257,35 +282,42 @@ const PageCupom: React.FC = () => {
 
             <Grid item sm={6} xs={12}>
 
-              <TextField                
-                type="date"
-                fullWidth
-                variant="outlined"
-                label="startAt:"
-                id="startAt"
-                name="startAt"
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ ptBR }>
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Data inicial"  
+                format="dd/MM/yyyy"
                 value={cupomForm.startAt}
-                onChange={handleSelectChange}
-              />
-            </Grid>
+                onChange={handleDateChangeInitialDate}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                }}
+                />
+            </MuiPickersUtilsProvider>
+          </Grid>
 
-            <Grid item sm={6} xs={12}>
+          <Grid item sm={6} xs={12}>          
 
-              <TextField
-                type="date"
-                fullWidth
-                variant="outlined"
-                label="finishAt:"
-                id="finishAt"
-                name="finishAt"
+                
+            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ ptBR }>
+
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Data final"  
+                format="dd/MM/yyyy"
                 value={cupomForm.finishAt}
-                onChange={handleSelectChange}
-              />
-            </Grid>
+                onChange={handleDateChangeSet}
+                KeyboardButtonProps={{
+                  'aria-label': 'change date',
+                  "aria-disabled": "true"
+                }}
+                />
 
-
-
-            
+            </MuiPickersUtilsProvider>
+          </Grid>          
 
           </Grid>
         </Form>}

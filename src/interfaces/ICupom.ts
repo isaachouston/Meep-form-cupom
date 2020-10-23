@@ -10,6 +10,6 @@ export interface ICupom{
     valueType: number; // enum
     type: number; // enum   
     appliedIn: number; // enum  
-    startAt?: Date;    
-    finishAt?: Date; 
+    startAt?: Date | null;    
+    finishAt?: Date | null; 
 }
