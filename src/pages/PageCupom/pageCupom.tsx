@@ -4,12 +4,9 @@ import Container from '@material-ui/core/Container/Container';
 import { ptBR } from 'date-fns/locale'
 import { Formik, Form } from 'formik';
 import DateFnsUtils from '@date-io/date-fns';
-import { Button, FormControl, FormControlLabel, Grid, InputLabel, Radio, Select, TextField } from '@material-ui/core';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import { Button, FormControl, FormControlLabel, Grid, InputAdornment, InputLabel, Radio, Select, TextField, Typography } from '@material-ui/core';
 import { ICupom } from '../../interfaces/ICupom';
-import {
-  MuiPickersUtilsProvider, 
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 
 
 const PageCupom: React.FC = () => {
@@ -58,7 +55,6 @@ const PageCupom: React.FC = () => {
         ...{ [name] : value }
       }))
     }
-
   };
 
  
@@ -105,11 +101,10 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-              <Button
-                fullWidth
-                variant="outlined"
-              >
-                Pago com Meep: 
+                <Typography variant="h6" gutterBottom color="textSecondary" >
+                  Pago com Meep: 
+                </Typography>
+
                 <FormControlLabel
                   value="true"
                   control={
@@ -137,9 +132,6 @@ const PageCupom: React.FC = () => {
                   label="Não"
                   labelPlacement="start"
                 />
-              </Button>
-
-              
             </Grid>
 
             <Grid item sm={6} xs={12}>
@@ -153,8 +145,8 @@ const PageCupom: React.FC = () => {
                 onChange={handleSelectChange}
               />
             </Grid>
-            <Grid item sm={6} xs={12}>
 
+            <Grid item sm={6} xs={12}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -167,7 +159,6 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 fullWidth
                 variant="outlined"
@@ -180,7 +171,6 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 fullWidth
                 variant="outlined"
@@ -189,6 +179,9 @@ const PageCupom: React.FC = () => {
                 name="value"
                 value={cupomForm.value}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
               />
             </Grid>
 
@@ -202,6 +195,10 @@ const PageCupom: React.FC = () => {
                 name="maxValue"
                 value={cupomForm.maxValue}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
+                type="number"
               />
             </Grid>
 
@@ -214,6 +211,10 @@ const PageCupom: React.FC = () => {
                 name="minOrderValue"
                 value={cupomForm.minOrderValue}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
+                type="number"
               />
             </Grid>
 
