@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container/Container';
 import { Formik, Form } from 'formik';
-import { Button, FormControl, FormControlLabel, Grid, InputLabel, Radio, Select, TextField } from '@material-ui/core';
+import { Button, FormControl, FormControlLabel, Grid, InputAdornment, InputLabel, Radio, Select, TextField, Typography } from '@material-ui/core';
 import { ICupom } from '../../interfaces/ICupom';
-
-
 
 
 const PageCupom: React.FC = () => {
@@ -52,8 +50,8 @@ const PageCupom: React.FC = () => {
         ...{ [name] : value }
       }))
     }
-
   };
+
 
   return (
   <Container maxWidth="md">
@@ -80,11 +78,10 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-              <Button
-                fullWidth
-                variant="outlined"
-              >
-                Pago com Meep: 
+                <Typography variant="h6" gutterBottom color="textSecondary" >
+                  Pago com Meep: 
+                </Typography>
+
                 <FormControlLabel
                   value="true"
                   control={
@@ -112,9 +109,6 @@ const PageCupom: React.FC = () => {
                   label="Não"
                   labelPlacement="start"
                 />
-              </Button>
-
-              
             </Grid>
 
             <Grid item sm={6} xs={12}>
@@ -128,8 +122,8 @@ const PageCupom: React.FC = () => {
                 onChange={handleSelectChange}
               />
             </Grid>
-            <Grid item sm={6} xs={12}>
 
+            <Grid item sm={6} xs={12}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -142,7 +136,6 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 fullWidth
                 variant="outlined"
@@ -155,7 +148,6 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 fullWidth
                 variant="outlined"
@@ -164,6 +156,9 @@ const PageCupom: React.FC = () => {
                 name="value"
                 value={cupomForm.value}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
               />
             </Grid>
 
@@ -177,6 +172,10 @@ const PageCupom: React.FC = () => {
                 name="maxValue"
                 value={cupomForm.maxValue}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
+                type="number"
               />
             </Grid>
 
@@ -189,6 +188,10 @@ const PageCupom: React.FC = () => {
                 name="minOrderValue"
                 value={cupomForm.minOrderValue}
                 onChange={handleSelectChange}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
+                type="number"
               />
             </Grid>
 
@@ -256,7 +259,6 @@ const PageCupom: React.FC = () => {
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField                
                 type="date"
                 fullWidth
@@ -266,11 +268,11 @@ const PageCupom: React.FC = () => {
                 name="startAt"
                 value={cupomForm.startAt}
                 onChange={handleSelectChange}
+                InputLabelProps={{ shrink: true }}
               />
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 type="date"
                 fullWidth
@@ -280,13 +282,9 @@ const PageCupom: React.FC = () => {
                 name="finishAt"
                 value={cupomForm.finishAt}
                 onChange={handleSelectChange}
+                InputLabelProps={{ shrink: true }}
               />
             </Grid>
-
-
-
-            
-
           </Grid>
         </Form>}
       </Formik>
