@@ -182,11 +182,11 @@ const PageCupom: React.FC = () => {
                 InputProps={{
                   startAdornment: <InputAdornment position="start">R$</InputAdornment>,
                 }}
+                type="number"
               />
             </Grid>
 
             <Grid item sm={6} xs={12}>
-
               <TextField
                 fullWidth
                 variant="outlined"
@@ -284,8 +284,9 @@ const PageCupom: React.FC = () => {
             <Grid item sm={6} xs={12}>
 
             <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ ptBR }>
-
               <KeyboardDatePicker
+                variant="dialog"
+                fullWidth
                 margin="normal"
                 id="date-picker-dialog"
                 label="Data inicial"  
@@ -296,29 +297,26 @@ const PageCupom: React.FC = () => {
                   'aria-label': 'change date',
                 }}
                 />
-            </MuiPickersUtilsProvider>
-          </Grid>
+              </MuiPickersUtilsProvider>
+            </Grid>
 
-          <Grid item sm={6} xs={12}>          
-
-                
-            <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ ptBR }>
-
-              <KeyboardDatePicker
-                margin="normal"
-                id="date-picker-dialog"
-                label="Data final"  
-                format="dd/MM/yyyy"
-                value={cupomForm.finishAt}
-                onChange={handleDateChangeSet}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                  "aria-disabled": "true"
-                }}
+            <Grid item sm={6} xs={12}>          
+              <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ ptBR }>
+                <KeyboardDatePicker
+                  fullWidth
+                  margin="normal"
+                  id="date-picker-dialog"
+                  label="Data final"  
+                  format="dd/MM/yyyy"
+                  value={cupomForm.finishAt}
+                  onChange={handleDateChangeSet}
+                  KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                    "aria-disabled": "true"
+                  }}
                 />
-
-            </MuiPickersUtilsProvider>
-          </Grid>          
+              </MuiPickersUtilsProvider>
+            </Grid>          
 
           </Grid>
         </Form>}
